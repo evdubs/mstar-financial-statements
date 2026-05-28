@@ -71,11 +71,16 @@
 
 (define last-symbol (make-parameter ""))
 
+(define user-agent (make-parameter ""))
+
 (define waf-token (make-parameter ""))
 
 (command-line
  #:program "racket financial-statements-extract.rkt"
  #:once-each
+ [("-a" "--user-agent") agent
+                        "User Agent"
+                        (user-agent agent)]
  [("-f" "--first-symbol") first
                           "First symbol to query. Defaults to nothing"
                           (first-symbol first)]
@@ -135,7 +140,7 @@ order by
 (disconnect dbc)
 
 (define (get-token) (~> (get "https://www.morningstar.com/api/v2/stores/maas/token"
-                             #:user-agent "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/144.0"
+                             #:user-agent (user-agent)
                              #:headers (hash 'x-aws-waf-token (waf-token)))
                         (response-body _)
                         (bytes->string/utf-8 _)))
