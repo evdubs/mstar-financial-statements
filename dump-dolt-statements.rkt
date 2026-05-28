@@ -71,7 +71,8 @@ select
 from
   mstar.balance_sheet_assets
 where
-  date = $1::text::date
+  date = $1::text::date and
+  currency = 'USD'
 order by
   act_symbol, date, period;
 "
@@ -121,7 +122,8 @@ select
 from
   mstar.balance_sheet_equity
 where
-  date = $1::text::date
+  date = $1::text::date and
+  currency = 'USD'
 order by
   act_symbol, date, period;
 "
@@ -177,7 +179,8 @@ select
 from
   mstar.balance_sheet_liabilities
 where
-  date = $1::text::date
+  date = $1::text::date and
+  currency = 'USD'
 order by
   act_symbol, date, period;
 "
@@ -239,7 +242,8 @@ select
 from
   mstar.cash_flow_statement
 where
-  date = $1::text::date
+  date = $1::text::date and
+  currency = 'USD'
 order by
   act_symbol, date, period;
 "
@@ -299,7 +303,8 @@ select
 from
   mstar.income_statement
 where
-  date = $1::text::date
+  date = $1::text::date and
+  currency = 'USD'
 order by
   act_symbol, date, period;
 "
