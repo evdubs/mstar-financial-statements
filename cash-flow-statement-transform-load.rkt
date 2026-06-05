@@ -144,7 +144,6 @@
                                         (-days (+months (date year end-month) 1) 1))
                                       (~> (hash-ref cash-flow-statement-json 'columnDefs)
                                           (filter (λ (def) (not (equal? "TTM" def))) _)))]))
-            (displayln ticker-symbol)
 
             (define currency (~> (hash-ref cash-flow-statement-json 'footer)
                                  (hash-ref _ 'currency)))

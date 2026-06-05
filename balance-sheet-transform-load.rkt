@@ -173,7 +173,6 @@
                                                (set! year (sub1 year))])
                                         (-days (+months (date year end-month) 1) 1))
                                       (hash-ref balance-sheet-json 'columnDefs))]))
-            (displayln ticker-symbol)
 
             (define currency (~> (hash-ref balance-sheet-json 'footer)
                                  (hash-ref _ 'currency)))
