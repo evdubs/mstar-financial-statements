@@ -147,7 +147,7 @@ order by
 
 (define token (get-token))
 
-(define delay-interval 24)
+(define delay-interval 36)
 
 (define delays (map (λ (x) (* delay-interval x)) (range 0 (length symbols))))
 
@@ -160,23 +160,23 @@ order by
                               (schedule-delayed-task (λ () (thread (λ () (download-balance-sheet (vector-ref (first l) 0)
                                                                                                  (vector-ref (first l) 1)
                                                                                                  "Q"))))
-                                                     (+ 4 (second l)))
+                                                     (+ 6 (second l)))
                               (schedule-delayed-task (λ () (thread (λ () (download-cash-flow-statement (vector-ref (first l) 0)
                                                                                                        (vector-ref (first l) 1)
                                                                                                        "A"))))
-                                                     (+ 8 (second l)))
+                                                     (+ 12 (second l)))
                               (schedule-delayed-task (λ () (thread (λ () (download-cash-flow-statement (vector-ref (first l) 0)
                                                                                                        (vector-ref (first l) 1)
                                                                                                        "Q"))))
-                                                     (+ 12 (second l)))
+                                                     (+ 18 (second l)))
                               (schedule-delayed-task (λ () (thread (λ () (download-income-statement (vector-ref (first l) 0)
                                                                                                     (vector-ref (first l) 1)
                                                                                                     "A"))))
-                                                     (+ 16 (second l)))
+                                                     (+ 24 (second l)))
                               (schedule-delayed-task (λ () (thread (λ () (download-income-statement (vector-ref (first l) 0)
                                                                                                     (vector-ref (first l) 1)
                                                                                                     "Q"))))
-                                                     (+ 20 (second l))))
+                                                     (+ 30 (second l))))
                             (map list symbols delays))
   ; add a final task that will halt the task server
   (schedule-delayed-task (λ () (schedule-stop-task)) (* delay-interval (length delays)))
