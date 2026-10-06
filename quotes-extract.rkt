@@ -72,6 +72,7 @@ select
     when 'IEXG' then 'iexg:' || lower(act_symbol)
     when 'BATS' then 'bats:' || lower(act_symbol)
     when 'CHX' then 'xchi:' || lower(act_symbol)
+    when 'TXSE' then 'txse:' || lower(act_symbol)
   end
 from
   nasdaq.symbol
